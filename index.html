@@ -240,7 +240,7 @@
                 <div class="max-w-6xl mx-auto px-4 py-4">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-lg flex items-center justify-center overflow-hidden">
+                            <div class="w-16 h-16 rounded-lg flex items-center justify-center overflow-hidden">
                                 <img src="https://pfst.cf2.poecdn.net/base/image/cc880aabb5d7d2305b7aa6b910e47992b6e8a43bda688a85f93e31c5c74943f2?w=135&h=135" 
                                      alt="Practical Design Efficiency Tool" 
                                      class="w-full h-full object-contain">
@@ -684,7 +684,7 @@
                         </div>
 
                         <!-- Tool Information -->
-                        <div class="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-6">
+                        <div class="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-6 mb-6">
                             <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">About This Tool</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
@@ -702,6 +702,25 @@
                                     <p class="text-sm text-gray-700 dark:text-gray-300">For questions about this tool or your analysis results, contact our team through the link above.</p>
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- Navigation Buttons -->
+                        <div class="flex justify-between mt-8">
+                            <button onclick="showPage('summary')" class="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors duration-300">
+                                <i data-lucide="arrow-left" class="h-5 w-5 mr-2 inline"></i>
+                                Back to Summary
+                            </button>
+                            <button onclick="resetTool()" class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-300">
+                                <i data-lucide="refresh-cw" class="h-5 w-5 mr-2 inline"></i>
+                                Start New Analysis
+                            </button>
+                        </div>
+                        
+                        <!-- Tool Development Footnote -->
+                        <div class="mt-8 pt-4 border-t border-gray-200 dark:border-gray-600">
+                            <p class="text-xs text-gray-500 dark:text-gray-400 text-center">
+                                Tool developed by <a href="https://www.linkedin.com/in/mehdirobati" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 transition-colors">Dr Mehdi Robati</a> with AI assistance.
+                            </p>
                         </div>
 
                         <!-- Navigation Buttons -->
@@ -780,297 +799,474 @@
                     </div>
                 </div>
 
-                <!-- IFC Integration Structure -->
+                <!-- API Implementation Details -->
                 <div>
-                    <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">IFC Integration Architecture</h3>
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">API Implementation Guide</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">Complete code examples for extracting efficiency parameters from IFC models</p>
                     
-                    <!-- Data Flow Diagram -->
+                    <!-- Basic Form Parameters -->
                     <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 mb-6">
-                        <h4 class="font-medium text-gray-800 dark:text-gray-100 mb-4">Data Flow & Processing Pipeline</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                            <div class="text-center">
-                                <div class="bg-green-100 dark:bg-green-900/30 rounded-lg p-4 mb-3">
-                                    <i data-lucide="upload" class="h-6 w-6 text-green-600 dark:text-green-400 mx-auto mb-2"></i>
-                                    <h5 class="font-medium text-green-800 dark:text-green-200">1. IFC Upload</h5>
-                                </div>
-                                <p class="text-xs text-gray-600 dark:text-gray-400">Upload IFC model file or connect via API</p>
-                            </div>
-                            <div class="text-center">
-                                <div class="bg-blue-100 dark:bg-blue-900/30 rounded-lg p-4 mb-3">
-                                    <i data-lucide="cpu" class="h-6 w-6 text-blue-600 dark:text-blue-400 mx-auto mb-2"></i>
-                                    <h5 class="font-medium text-blue-800 dark:text-blue-200">2. Parse & Extract</h5>
-                                </div>
-                                <p class="text-xs text-gray-600 dark:text-gray-400">Extract geometry, properties & relationships</p>
-                            </div>
-                            <div class="text-center">
-                                <div class="bg-purple-100 dark:bg-purple-900/30 rounded-lg p-4 mb-3">
-                                    <i data-lucide="calculator" class="h-6 w-6 text-purple-600 dark:text-purple-400 mx-auto mb-2"></i>
-                                    <h5 class="font-medium text-purple-800 dark:text-purple-200">3. Calculate</h5>
-                                </div>
-                                <p class="text-xs text-gray-600 dark:text-gray-400">Compute efficiency parameters automatically</p>
-                            </div>
-                            <div class="text-center">
-                                <div class="bg-orange-100 dark:bg-orange-900/30 rounded-lg p-4 mb-3">
-                                    <i data-lucide="check-circle" class="h-6 w-6 text-orange-600 dark:text-orange-400 mx-auto mb-2"></i>
-                                    <h5 class="font-medium text-orange-800 dark:text-orange-200">4. Validate</h5>
-                                </div>
-                                <p class="text-xs text-gray-600 dark:text-gray-400">Run efficiency checks & generate reports</p>
-                            </div>
+                        <h4 class="font-semibold text-gray-800 dark:text-gray-100 mb-3">
+                            <i data-lucide="box" class="h-5 w-5 inline mr-2 text-blue-600"></i>
+                            Basic Form & Structure Parameters
+                        </h4>
+                        <div class="bg-gray-900 rounded p-4 text-sm overflow-x-auto">
+                            <pre class="text-green-400"><code>import ifcopenshell
+import ifcopenshell.geom
+from collections import defaultdict
+import numpy as np
+
+class EfficiencyParameterExtractor:
+    def __init__(self, ifc_file_path):
+        self.model = ifcopenshell.open(ifc_file_path)
+        self.settings = ifcopenshell.geom.settings()
+        
+    def extract_form_efficiency(self):
+        """Calculate building perimeter to area ratio"""
+        # Get exterior walls
+        walls = self.model.by_type('IfcWall')
+        exterior_walls = [w for w in walls if self.is_exterior_wall(w)]
+        
+        # Calculate perimeter
+        perimeter = 0
+        for wall in exterior_walls:
+            shape = ifcopenshell.geom.create_shape(self.settings, wall)
+            perimeter += self.get_wall_length(shape)
+        
+        # Get total floor area
+        spaces = self.model.by_type('IfcSpace')
+        total_area = sum(self.get_space_area(space) for space in spaces)
+        
+        return {
+            'perimeter': perimeter,
+            'area': total_area,
+            'form_efficiency': perimeter / total_area if total_area > 0 else 0
+        }
+    
+    def extract_height_width_ratio(self):
+        """Calculate building height to width ratio"""
+        building = self.model.by_type('IfcBuilding')[0]
+        storeys = self.model.by_type('IfcBuildingStorey')
+        
+        # Calculate building height
+        elevations = [self.get_storey_elevation(s) for s in storeys]
+        building_height = max(elevations) - min(elevations)
+        
+        # Calculate building footprint and max width
+        building_footprint = self.get_building_footprint()
+        max_width = max(building_footprint['width'], building_footprint['length'])
+        
+        return {
+            'height': building_height,
+            'width': max_width,
+            'height_width_ratio': building_height / max_width if max_width > 0 else 0
+        }
+    
+    def extract_floor_heights(self):
+        """Extract floor-to-floor heights"""
+        storeys = sorted(self.model.by_type('IfcBuildingStorey'), 
+                        key=lambda s: self.get_storey_elevation(s))
+        
+        floor_heights = []
+        for i in range(len(storeys) - 1):
+            current_elevation = self.get_storey_elevation(storeys[i])
+            next_elevation = self.get_storey_elevation(storeys[i + 1])
+            floor_heights.append(next_elevation - current_elevation)
+        
+        return {
+            'floor_heights': floor_heights,
+            'average_floor_height': np.mean(floor_heights) if floor_heights else 0,
+            'max_floor_height': max(floor_heights) if floor_heights else 0
+        }</code></pre>
                         </div>
                     </div>
 
-                    <!-- API Structure -->
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        <!-- IFC Parameter Extraction -->
-                        <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-6">
-                            <h4 class="font-semibold text-gray-800 dark:text-gray-100 mb-4">
-                                <i data-lucide="database" class="h-5 w-5 inline mr-2 text-green-600"></i>
-                                IFC Parameter Extraction
-                            </h4>
-                            
-                            <div class="space-y-4">
-                                <div>
-                                    <h5 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Building Form Parameters</h5>
-                                    <div class="bg-gray-50 dark:bg-gray-700 rounded p-3 text-xs">
-                                        <code class="text-gray-800 dark:text-gray-200">
-                                            // Extract from IfcBuilding & IfcSpace entities<br/>
-                                            buildingPerimeter = calculateExteriorWallLength(ifcWalls)<br/>
-                                            totalArea = sumPropertySet(ifcSpaces, 'NetFloorArea')<br/>
-                                            formEfficiency = buildingPerimeter / totalArea
-                                        </code>
-                                    </div>
-                                </div>
-                                
-                                <div>
-                                    <h5 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Structural Grid</h5>
-                                    <div class="bg-gray-50 dark:bg-gray-700 rounded p-3 text-xs">
-                                        <code class="text-gray-800 dark:text-gray-200">
-                                            // Extract from IfcGrid & IfcColumn<br/>
-                                            gridSpacing = analyzeColumnSpacing(ifcColumns)<br/>
-                                            structuralBays = getGridDimensions(ifcGrids)
-                                        </code>
-                                    </div>
-                                </div>
-                                
-                                <div>
-                                    <h5 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Floor Heights</h5>
-                                    <div class="bg-gray-50 dark:bg-gray-700 rounded p-3 text-xs">
-                                        <code class="text-gray-800 dark:text-gray-200">
-                                            // Extract from IfcBuildingStorey<br/>
-                                            floorToFloorHeight = calculateStoreyHeights(ifcStoreys)
-                                        </code>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- API Integration -->
-                        <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-6">
-                            <h4 class="font-semibold text-gray-800 dark:text-gray-100 mb-4">
-                                <i data-lucide="link" class="h-5 w-5 inline mr-2 text-blue-600"></i>
-                                API Integration Points
-                            </h4>
-                            
-                            <div class="space-y-4">
-                                <div>
-                                    <h5 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">REST API Endpoints</h5>
-                                    <div class="bg-gray-50 dark:bg-gray-700 rounded p-3 text-xs space-y-2">
-                                        <div><span class="text-green-600 font-medium">POST</span> <code>/api/ifc/upload</code> - Upload IFC file</div>
-                                        <div><span class="text-blue-600 font-medium">GET</span> <code>/api/ifc/extract/{id}</code> - Extract parameters</div>
-                                        <div><span class="text-purple-600 font-medium">POST</span> <code>/api/efficiency/analyze</code> - Run analysis</div>
-                                        <div><span class="text-orange-600 font-medium">GET</span> <code>/api/reports/{id}</code> - Get results</div>
-                                    </div>
-                                </div>
-                                
-                                <div>
-                                    <h5 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Webhook Integration</h5>
-                                    <div class="bg-gray-50 dark:bg-gray-700 rounded p-3 text-xs">
-                                        <code class="text-gray-800 dark:text-gray-200">
-                                            // Real-time model updates<br/>
-                                            webhook: /api/webhooks/model-updated<br/>
-                                            triggers: auto-reanalysis on model changes
-                                        </code>
-                                    </div>
-                                </div>
-                                
-                                <div>
-                                    <h5 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Plugin Architecture</h5>
-                                    <div class="bg-gray-50 dark:bg-gray-700 rounded p-3 text-xs">
-                                        <div class="space-y-1">
-                                            <div>• Revit Add-in (.addin)</div>
-                                            <div>• ArchiCAD Add-On (.apx)</div>
-                                            <div>• Rhino Plugin (.rhi)</div>
-                                            <div>• Grasshopper Component</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <!-- Cantilever Analysis -->
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 mb-6">
+                        <h4 class="font-semibold text-gray-800 dark:text-gray-100 mb-3">
+                            <i data-lucide="maximize" class="h-5 w-5 inline mr-2 text-orange-600"></i>
+                            Cantilever Projection Analysis
+                        </h4>
+                        <div class="bg-gray-900 rounded p-4 text-sm overflow-x-auto">
+                            <pre class="text-green-400"><code>    def extract_cantilevers(self):
+        """Identify and analyze cantilever elements - sorted high to low projection"""
+        cantilevers = []
+        
+        # Analyze slabs for cantilevers
+        slabs = self.model.by_type('IfcSlab')
+        for slab in slabs:
+            slab_cantilevers = self.analyze_slab_cantilevers(slab)
+            cantilevers.extend(slab_cantilevers)
+        
+        # Analyze beams for cantilevers
+        beams = self.model.by_type('IfcBeam')
+        for beam in beams:
+            beam_cantilevers = self.analyze_beam_cantilevers(beam)
+            cantilevers.extend(beam_cantilevers)
+        
+        # Sort by projection length (high to low)
+        cantilevers.sort(key=lambda x: x['length'], reverse=True)
+        
+        return {
+            'cantilevers': cantilevers,
+            'max_projection': max([c['length'] for c in cantilevers]) if cantilevers else 0,
+            'total_cantilevers': len(cantilevers)
+        }
+    
+    def analyze_slab_cantilevers(self, slab):
+        """Analyze individual slab for cantilever projections"""
+        cantilevers = []
+        
+        # Get slab geometry
+        shape = ifcopenshell.geom.create_shape(self.settings, slab)
+        slab_geometry = self.parse_geometry(shape)
+        
+        # Get supporting elements (columns, walls, beams)
+        supports = self.get_slab_supports(slab)
+        support_boundaries = self.get_support_boundaries(supports)
+        
+        # Find unsupported edges (cantilevers)
+        for edge in slab_geometry['edges']:
+            if self.is_cantilever_edge(edge, support_boundaries):
+                projection_length = self.calculate_cantilever_projection(edge, support_boundaries)
+                element_type = self.classify_cantilever_type(slab, edge)
+                
+                cantilevers.append({
+                    'element': element_type,
+                    'location': self.get_element_location(slab),
+                    'length': projection_length,
+                    'width': self.get_cantilever_width(edge),
+                    'load': self.classify_cantilever_load(slab, edge),
+                    'element_id': slab.GlobalId
+                })
+        
+        return cantilevers
+    
+    def classify_cantilever_type(self, element, edge):
+        """Classify cantilever type based on context"""
+        # Check if it's a balcony (adjacent to spaces)
+        if self.is_adjacent_to_residential_space(element):
+            return 'Balcony'
+        # Check if it's roof level
+        elif self.is_roof_level(element):
+            return 'Roof Overhang'
+        # Check if it supports facade
+        elif self.supports_facade_elements(element):
+            return 'Facade Element'
+        else:
+            return 'Slab Extension'</code></pre>
                         </div>
                     </div>
-                </div>
 
-                <!-- Implementation Examples -->
-                <div>
-                    <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">Implementation Examples</h3>
-                    
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        <!-- JavaScript SDK -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-6">
-                            <h4 class="font-semibold text-gray-800 dark:text-gray-100 mb-3">JavaScript SDK Integration</h4>
-                            <div class="bg-gray-900 rounded p-4 text-sm overflow-x-auto">
-                                <pre class="text-green-400"><code>// Initialize the Efficiency Tool SDK
-import { EfficiencyTool } from '@lendlease/efficiency-sdk';
-
-const tool = new EfficiencyTool({
-  apiKey: 'your_api_key',
-  endpoint: 'https://api.efficiency-tool.com'
-});
-
-// Upload and analyze IFC model
-async function analyzeModel(ifcFile) {
-  try {
-    // Upload IFC file
-    const upload = await tool.uploadIFC(ifcFile);
+                    <!-- Transfer Structure Analysis -->
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 mb-6">
+                        <h4 class="font-semibold text-gray-800 dark:text-gray-100 mb-3">
+                            <i data-lucide="layers" class="h-5 w-5 inline mr-2 text-red-600"></i>
+                            Transfer Structure Analysis
+                        </h4>
+                        <div class="bg-gray-900 rounded p-4 text-sm overflow-x-auto">
+                            <pre class="text-green-400"><code>    def extract_transfer_structures(self):
+        """Identify transfer levels - sorted by thickness (thickest to lowest)"""
+        transfers = []
+        
+        storeys = self.model.by_type('IfcBuildingStorey')
+        for storey in storeys:
+            storey_transfers = self.analyze_storey_transfers(storey)
+            transfers.extend(storey_transfers)
+        
+        # Sort by slab thickness (thickest to lowest)
+        transfers.sort(key=lambda x: x['thickness'], reverse=True)
+        
+        return {
+            'transfers': transfers,
+            'transfer_count': len(transfers),
+            'max_thickness': max([t['thickness'] for t in transfers]) if transfers else 0
+        }
     
-    // Extract parameters automatically
-    const parameters = await tool.extractParameters(upload.id);
+    def analyze_storey_transfers(self, storey):
+        """Analyze individual storey for transfer structures"""
+        transfers = []
+        
+        # Get all structural elements in this storey
+        storey_elements = self.get_storey_elements(storey)
+        
+        # Analyze slabs for transfer characteristics
+        slabs = [e for e in storey_elements if e.is_a('IfcSlab')]
+        for slab in slabs:
+            if self.is_transfer_slab(slab):
+                transfer_data = self.analyze_transfer_slab(slab, storey)
+                transfers.append(transfer_data)
+        
+        # Analyze beams for transfer characteristics
+        beams = [e for e in storey_elements if e.is_a('IfcBeam')]
+        transfer_beams = self.identify_transfer_beams(beams, storey)
+        transfers.extend(transfer_beams)
+        
+        return transfers
     
-    // Run efficiency analysis
-    const analysis = await tool.analyze({
-      projectName: 'Tower Project',
-      buildingType: 'office',
-      parameters: parameters
-    });
+    def is_transfer_slab(self, slab):
+        """Determine if slab is a transfer structure"""
+        # Check thickness (transfer slabs are typically thicker)
+        thickness = self.get_slab_thickness(slab)
+        if thickness > 500:  # 500mm threshold
+            return True
+        
+        # Check if columns don't align above and below
+        columns_below = self.get_columns_below_slab(slab)
+        columns_above = self.get_columns_above_slab(slab)
+        
+        alignment_ratio = self.calculate_column_alignment(columns_below, columns_above)
+        return alignment_ratio < 0.7  # Less than 70% alignment
     
-    // Get recommendations
-    const report = await tool.generateReport(analysis.id);
-    return report;
+    def analyze_transfer_slab(self, slab, storey):
+        """Analyze transfer slab details"""
+        return {
+            'level': storey.Name or f"Level {storey.GlobalId[:8]}",
+            'thickness': self.get_slab_thickness(slab),
+            'area': self.get_slab_area(slab),
+            'reason': self.determine_transfer_reason(slab),
+            'structural_system': self.classify_transfer_system(slab),
+            'element_id': slab.GlobalId
+        }
     
-  } catch (error) {
-    console.error('Analysis failed:', error);
-  }
-}</code></pre>
-                            </div>
-                        </div>
-
-                        <!-- Python API Example -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-6">
-                            <h4 class="font-semibold text-gray-800 dark:text-gray-100 mb-3">Python API Integration</h4>
-                            <div class="bg-gray-900 rounded p-4 text-sm overflow-x-auto">
-                                <pre class="text-green-400"><code># Python SDK for IFC Processing
-import ifcopenshell
-from efficiency_tool import EfficiencyAPI
-
-# Initialize API client
-api = EfficiencyAPI(api_key="your_key")
-
-# Load and process IFC file
-def process_ifc_model(ifc_path):
-    # Parse IFC file
-    model = ifcopenshell.open(ifc_path)
-    
-    # Extract building parameters
-    building = model.by_type('IfcBuilding')[0]
-    spaces = model.by_type('IfcSpace')
-    
-    # Calculate parameters
-    total_area = sum(get_net_area(space) for space in spaces)
-    perimeter = calculate_building_perimeter(model)
-    
-    # Submit to efficiency tool
-    result = api.analyze({
-        'form_efficiency': perimeter / total_area,
-        'floor_height': get_floor_height(model),
-        'grid_spacing': analyze_structural_grid(model)
-    })
-    
-    return result</code></pre>
-                            </div>
+    def determine_transfer_reason(self, slab):
+        """Determine reason for transfer structure"""
+        columns_below = self.get_columns_below_slab(slab)
+        columns_above = self.get_columns_above_slab(slab)
+        
+        if len(columns_below) != len(columns_above):
+            return 'Column Grid Change'
+        elif self.has_program_change_above(slab):
+            return 'Program Change'
+        elif self.has_mep_constraints(slab):
+            return 'MEP Requirement'
+        else:
+            return 'Structural Constraint'</code></pre>
                         </div>
                     </div>
-                </div>
 
-                <!-- Parameter Mapping -->
-                <div>
-                    <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">IFC Entity Mapping</h3>
-                    
-                    <div class="overflow-x-auto">
-                        <table class="w-full border border-gray-200 dark:border-gray-600 rounded-lg">
-                            <thead class="bg-gray-50 dark:bg-gray-700">
-                                <tr>
-                                    <th class="text-left p-3 border-b border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-100">Efficiency Parameter</th>
-                                    <th class="text-left p-3 border-b border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-100">IFC Entities</th>
-                                    <th class="text-left p-3 border-b border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-100">Properties/Calculations</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-b border-gray-200 dark:border-gray-600">
-                                    <td class="p-3 font-medium text-gray-800 dark:text-gray-100">Form Efficiency</td>
-                                    <td class="p-3 text-gray-600 dark:text-gray-400">IfcWall, IfcSpace, IfcBuilding</td>
-                                    <td class="p-3 text-sm text-gray-600 dark:text-gray-400">Exterior wall length ÷ Total floor area</td>
-                                </tr>
-                                <tr class="border-b border-gray-200 dark:border-gray-600">
-                                    <td class="p-3 font-medium text-gray-800 dark:text-gray-100">Height/Width Ratio</td>
-                                    <td class="p-3 text-gray-600 dark:text-gray-400">IfcBuilding, IfcBuildingStorey</td>
-                                    <td class="p-3 text-sm text-gray-600 dark:text-gray-400">Building height ÷ Max building width</td>
-                                </tr>
-                                <tr class="border-b border-gray-200 dark:border-gray-600">
-                                    <td class="p-3 font-medium text-gray-800 dark:text-gray-100">Grid Spacing</td>
-                                    <td class="p-3 text-gray-600 dark:text-gray-400">IfcGrid, IfcColumn, IfcBeam</td>
-                                    <td class="p-3 text-sm text-gray-600 dark:text-gray-400">Analysis of column grid patterns</td>
-                                </tr>
-                                <tr class="border-b border-gray-200 dark:border-gray-600">
-                                    <td class="p-3 font-medium text-gray-800 dark:text-gray-100">Floor-to-Floor Height</td>
-                                    <td class="p-3 text-gray-600 dark:text-gray-400">IfcBuildingStorey</td>
-                                    <td class="p-3 text-sm text-gray-600 dark:text-gray-400">Elevation differences between storeys</td>
-                                </tr>
-                                <tr class="border-b border-gray-200 dark:border-gray-600">
-                                    <td class="p-3 font-medium text-gray-800 dark:text-gray-100">Window-to-Wall Ratio</td>
-                                    <td class="p-3 text-gray-600 dark:text-gray-400">IfcWindow, IfcWall, IfcCurtainWall</td>
-                                    <td class="p-3 text-sm text-gray-600 dark:text-gray-400">Window area ÷ Total wall area</td>
-                                </tr>
-                                <tr class="border-b border-gray-200 dark:border-gray-600">
-                                    <td class="p-3 font-medium text-gray-800 dark:text-gray-100">Net-to-Gross Ratio</td>
-                                    <td class="p-3 text-gray-600 dark:text-gray-400">IfcSpace, IfcZone</td>
-                                    <td class="p-3 text-sm text-gray-600 dark:text-gray-400">Usable space area ÷ Total floor area</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 font-medium text-gray-800 dark:text-gray-100">Service Runs</td>
-                                    <td class="p-3 text-gray-600 dark:text-gray-400">IfcDistributionElement, IfcSpace</td>
-                                    <td class="p-3 text-sm text-gray-600 dark:text-gray-400">Distance from service cores to spaces</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Technical Requirements -->
-                <div class="bg-yellow-50 dark:bg-yellow-900/30 rounded-lg p-6">
-                    <h3 class="text-lg font-semibold text-yellow-800 dark:text-yellow-200 mb-4">
-                        <i data-lucide="alert-triangle" class="h-5 w-5 inline mr-2"></i>
-                        Technical Requirements & Limitations
-                    </h3>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <h4 class="font-medium text-yellow-800 dark:text-yellow-200 mb-3">System Requirements</h4>
-                            <ul class="text-sm text-yellow-700 dark:text-yellow-300 space-y-2">
-                                <li>• IFC Schema 2x3 TC1 or IFC 4 ADD2 TC1</li>
-                                <li>• Model file size limit: 500MB</li>
-                                <li>• Processing time: 2-15 minutes depending on complexity</li>
-                                <li>• API rate limit: 100 requests/hour</li>
-                                <li>• Supported coordinate systems: Local & Global</li>
-                            </ul>
+                    <!-- Column Alignment Analysis -->
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 mb-6">
+                        <h4 class="font-semibold text-gray-800 dark:text-gray-100 mb-3">
+                            <i data-lucide="grid-3x3" class="h-5 w-5 inline mr-2 text-purple-600"></i>
+                            Column Alignment Analysis (1.5m Eccentricity Tolerance)
+                        </h4>
+                        <div class="bg-gray-900 rounded p-4 text-sm overflow-x-auto">
+                            <pre class="text-green-400"><code>    def extract_column_alignment(self):
+        """Analyze column alignment with 1.5m eccentricity tolerance"""
+        columns = self.model.by_type('IfcColumn')
+        column_stacks = self.group_columns_by_stack(columns)
+        
+        column_analysis = []
+        total_columns = 0
+        aligned_columns = 0
+        
+        for stack_id, stack_columns in column_stacks.items():
+            stack_analysis = self.analyze_column_stack(stack_columns)
+            column_analysis.extend(stack_analysis)
+            
+            total_columns += len(stack_columns)
+            aligned_columns += sum(1 for col in stack_analysis if col['eccentricity'] <= 1500)
+        
+        # Sort by eccentricity (high to low), then by weight (heavy to light)
+        column_analysis.sort(key=lambda x: (-x['eccentricity'], -x['weight']))
+        
+        alignment_percentage = (aligned_columns / total_columns * 100) if total_columns > 0 else 100
+        
+        return {
+            'columns': column_analysis,
+            'alignment_percentage': alignment_percentage,
+            'total_columns': total_columns,
+            'aligned_columns': aligned_columns
+        }
+    
+    def analyze_column_stack(self, stack_columns):
+        """Analyze alignment within a column stack"""
+        # Sort by elevation
+        sorted_columns = sorted(stack_columns, key=lambda c: self.get_column_elevation(c))
+        
+        analysis = []
+        base_position = self.get_column_position(sorted_columns[0])
+        
+        for i, column in enumerate(sorted_columns):
+            current_position = self.get_column_position(column)
+            eccentricity = self.calculate_distance(base_position, current_position) * 1000  # Convert to mm
+            
+            column_data = {
+                'column_id': column.GlobalId[:8],
+                'location': self.get_column_grid_location(column),
+                'size': self.get_column_size(column),
+                'weight': self.calculate_column_weight(column),
+                'eccentricity': eccentricity,
+                'levels': self.count_column_levels(column),
+                'material': self.get_column_material(column),
+                'aligned': eccentricity <= 1500  # 1.5m tolerance
+            }
+            analysis.append(column_data)
+        
+        return analysis
+    
+    def calculate_column_weight(self, column):
+        """Calculate column weight per meter"""
+        # Get column dimensions
+        dimensions = self.get_column_dimensions(column)
+        material = self.get_column_material(column)
+        
+        # Material densities (kg/m³)
+        densities = {
+            'Concrete': 2400,
+            'Steel': 7850,
+            'Composite': 2200,
+            'Timber': 600
+        }
+        
+        density = densities.get(material, 2400)
+        volume_per_meter = dimensions['width'] * dimensions['depth']  # m²
+        
+        return volume_per_meter * density</code></pre>
                         </div>
-                        <div>
-                            <h4 class="font-medium text-yellow-800 dark:text-yellow-200 mb-3">Current Limitations</h4>
-                            <ul class="text-sm text-yellow-700 dark:text-yellow-300 space-y-2">
-                                <li>• Complex curved geometry may require manual verification</li>
-                                <li>• MEP service routing analysis is approximate</li>
-                                <li>• Custom property sets require mapping configuration</li>
-                                <li>• Multi-building projects need separate analysis</li>
-                                <li>• Real-time collaboration features in development</li>
-                            </ul>
+                    </div>
+
+                    <!-- Service Runs Analysis -->
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 mb-6">
+                        <h4 class="font-semibold text-gray-800 dark:text-gray-100 mb-3">
+                            <i data-lucide="git-branch" class="h-5 w-5 inline mr-2 text-green-600"></i>
+                            Horizontal Service Runs Analysis
+                        </h4>
+                        <div class="bg-gray-900 rounded p-4 text-sm overflow-x-auto">
+                            <pre class="text-green-400"><code>    def extract_service_runs(self):
+        """Calculate maximum horizontal distances from service cores"""
+        # Get all service cores and risers
+        cores = self.identify_service_cores()
+        service_analysis = []
+        
+        for core in cores:
+            core_analysis = self.analyze_service_core(core)
+            service_analysis.append(core_analysis)
+        
+        # Sort by maximum distance (high to low)
+        service_analysis.sort(key=lambda x: x['max_distance'], reverse=True)
+        
+        overall_max_distance = max([s['max_distance'] for s in service_analysis]) if service_analysis else 0
+        
+        return {
+            'service_cores': service_analysis,
+            'max_service_distance': overall_max_distance,
+            'core_count': len(service_analysis)
+        }
+    
+    def identify_service_cores(self):
+        """Identify service cores and risers"""
+        cores = []
+        
+        # Look for MEP spaces
+        spaces = self.model.by_type('IfcSpace')
+        for space in spaces:
+            if self.is_service_space(space):
+                cores.append({
+                    'element': space,
+                    'type': self.classify_service_type(space),
+                    'location': self.get_space_location(space)
+                })
+        
+        # Look for distribution elements
+        distribution_elements = self.model.by_type('IfcDistributionElement')
+        for element in distribution_elements:
+            if self.is_major_distribution_point(element):
+                cores.append({
+                    'element': element,
+                    'type': self.classify_distribution_type(element),
+                    'location': self.get_element_location(element)
+                })
+        
+        return cores
+    
+    def analyze_service_core(self, core):
+        """Analyze service reach from individual core"""
+        core_position = core['location']
+        served_spaces = self.get_served_spaces(core)
+        
+        distances = []
+        total_served_area = 0
+        
+        for space in served_spaces:
+            space_position = self.get_space_centroid(space)
+            distance = self.calculate_horizontal_distance(core_position, space_position)
+            distances.append(distance)
+            total_served_area += self.get_space_area(space)
+        
+        efficiency = self.calculate_distribution_efficiency(core, served_spaces)
+        
+        return {
+            'core_id': core['element'].GlobalId[:8],
+            'core_type': core['type'],
+            'location': f"{core_position['x']:.0f}, {core_position['y']:.0f}",
+            'max_distance': max(distances) if distances else 0,
+            'served_area': total_served_area,
+            'efficiency': efficiency
+        }
+    
+    def calculate_distribution_efficiency(self, core, served_spaces):
+        """Calculate distribution efficiency based on routing complexity"""
+        # Analyze routing paths
+        routing_complexity = self.analyze_routing_paths(core, served_spaces)
+        
+        if routing_complexity < 2:
+            return 'High (Direct)'
+        elif routing_complexity < 4:
+            return 'Medium (1-2 Branches)'
+        else:
+            return 'Low (Multiple Branches)'</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Usage Example -->
+                    <div class="bg-green-50 dark:bg-green-900/30 rounded-lg p-6">
+                        <h4 class="font-semibold text-green-800 dark:text-green-200 mb-3">
+                            <i data-lucide="play-circle" class="h-5 w-5 inline mr-2"></i>
+                            Complete Usage Example
+                        </h4>
+                        <div class="bg-gray-900 rounded p-4 text-sm overflow-x-auto">
+                            <pre class="text-green-400"><code># Complete extraction workflow
+def extract_all_efficiency_parameters(ifc_file_path):
+    """Extract all efficiency parameters from IFC model"""
+    extractor = EfficiencyParameterExtractor(ifc_file_path)
+    
+    # Extract all parameters
+    results = {
+        'form_efficiency': extractor.extract_form_efficiency(),
+        'height_width_ratio': extractor.extract_height_width_ratio(),
+        'floor_heights': extractor.extract_floor_heights(),
+        'cantilevers': extractor.extract_cantilevers(),
+        'transfers': extractor.extract_transfer_structures(),
+        'column_alignment': extractor.extract_column_alignment(),
+        'service_runs': extractor.extract_service_runs(),
+        'grid_spacing': extractor.extract_structural_grid(),
+        'window_wall_ratio': extractor.extract_window_wall_ratio(),
+        'net_to_gross': extractor.extract_net_to_gross_ratio()
+    }
+    
+    # Submit to efficiency tool API
+    api_payload = format_for_efficiency_tool(results)
+    
+    return {
+        'raw_data': results,
+        'formatted_payload': api_payload,
+        'analysis_summary': generate_summary(results)
+    }
+
+# Example usage
+if __name__ == "__main__":
+    ifc_file = "path/to/your/model.ifc"
+    efficiency_data = extract_all_efficiency_parameters(ifc_file)
+    
+    # Send to efficiency analysis tool
+    response = requests.post(
+        'https://mr329.github.io/Design-Efficiency-V2/api/analyze',
+        json=efficiency_data['formatted_payload']
+    )
+    
+    print("Analysis complete:", response.json())</code></pre>
                         </div>
                     </div>
                 </div>
@@ -1083,12 +1279,12 @@ def process_ifc_model(ifc_path):
                         </div>
                         <div>
                             <h3 class="text-xl font-bold mb-2">Ready to Integrate?</h3>
-                            <p class="text-blue-100 mb-4">Contact our development team to set up BIM integration for your workflow.</p>
+                            <p class="text-blue-100 mb-4">Contact our development team to set up BIM integration for your workflow through Lendlease Integrated Solutions.</p>
                             <div class="flex flex-wrap gap-3">
-                                <button class="bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300">
-                                    <i data-lucide="code" class="h-5 w-5 mr-2 inline"></i>
-                                    API Documentation
-                                </button>
+                                <a href="https://lendlease.sharepoint.com/sites/Microsite-Integrated-Solutions" target="_blank" rel="noopener noreferrer" class="bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300 inline-flex items-center">
+                                    <i data-lucide="external-link" class="h-5 w-5 mr-2"></i>
+                                    Integrated Solutions
+                                </a>
                                 <button class="bg-white/20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/30 transition-colors duration-300">
                                     <i data-lucide="download" class="h-5 w-5 mr-2 inline"></i>
                                     SDK Download
@@ -1261,11 +1457,24 @@ def process_ifc_model(ifc_path):
                 remediation: ['Add columns below', 'Use lightweight materials', 'Consider cable supports', 'Reduce cantilever length'],
                 impactScore: { cost: 'High', carbon: 'High', time: 'High' },
                 keyImpact: '+40-60% structure per metre',
-                inputType: 'number',
+                inputType: 'list',
                 unit: 'm',
-                inputLabel: 'Longest Distance (m)',
+                inputLabel: 'Cantilever Elements',
                 ranges: { optimal: { min: 0, max: 1.5 }, acceptable: { min: 1.5, max: 2.5 }, risk: { min: 3.5, max: 10 } },
-                defaultValue: 0
+                defaultValue: 0,
+                listConfig: {
+                    type: 'cantilevers',
+                    fields: [
+                        { name: 'element', label: 'Element Type', type: 'select', options: ['Balcony', 'Roof Overhang', 'Structural Beam', 'Slab Extension', 'Facade Element', 'Other'] },
+                        { name: 'location', label: 'Location/Level', type: 'text' },
+                        { name: 'length', label: 'Projection Length (m)', type: 'number', step: 0.1 },
+                        { name: 'width', label: 'Width (m)', type: 'number', step: 0.1 },
+                        { name: 'load', label: 'Load Type', type: 'select', options: ['Light (Facade only)', 'Medium (Occupied space)', 'Heavy (Structural/Equipment)'] }
+                    ],
+                    sortBy: 'length',
+                    sortOrder: 'desc',
+                    analysis: 'cantileverAnalysis'
+                }
             },
             {
                 id: 'transfer-structures',
@@ -1283,11 +1492,24 @@ def process_ifc_model(ifc_path):
                 remediation: ['Relocate columns', 'Adjust program stacking', 'Accept layout constraints', 'Use steel alternatives'],
                 impactScore: { cost: 'High', carbon: 'High', time: 'High' },
                 keyImpact: '2-3x material at transfers',
-                inputType: 'number',
+                inputType: 'list',
                 unit: 'levels',
-                inputLabel: 'No. of Transfers (Levels)',
+                inputLabel: 'Transfer Slab Details',
                 ranges: { optimal: { min: 0, max: 1 }, acceptable: { min: 1, max: 2 }, risk: { min: 2, max: 10 } },
-                defaultValue: 0
+                defaultValue: 0,
+                listConfig: {
+                    type: 'transfers',
+                    fields: [
+                        { name: 'level', label: 'Level/Floor', type: 'text' },
+                        { name: 'thickness', label: 'Slab Thickness (mm)', type: 'number', step: 10 },
+                        { name: 'area', label: 'Transfer Area (m²)', type: 'number', step: 0.1 },
+                        { name: 'reason', label: 'Reason for Transfer', type: 'select', options: ['Column Grid Change', 'Program Change', 'Structural Constraint', 'MEP Requirement', 'Other'] },
+                        { name: 'structural_system', label: 'Transfer System', type: 'select', options: ['Transfer Beam', 'Transfer Slab', 'Transfer Truss', 'Transfer Girder', 'Combined System'] }
+                    ],
+                    sortBy: 'thickness',
+                    sortOrder: 'desc',
+                    analysis: 'transferAnalysis'
+                }
             },
             {
                 id: 'window-wall-ratio',
@@ -1337,21 +1559,41 @@ def process_ifc_model(ifc_path):
                 category: 'Structure',
                 parameter: 'Column Alignment',
                 metric: 'Stacking %',
-                definition: 'The percentage of columns that stack vertically without requiring transfer structures.',
+                definition: 'The percentage of columns that stack vertically without requiring transfer structures. Based on 1.5m eccentricity tolerance across each column.',
                 quickRule: 'Maintain vertical continuity of structure',
                 optimal: '>85%',
                 acceptable: '70-85%',
                 risk: '<70%',
                 benefits: ['💰 Eliminates transfer costs', '🌿 Major carbon reduction', '⏱️ Simpler construction'],
-                technicalNote: 'Poor column alignment forces expensive transfer structures. Each transfer can add 200% more material locally and complicate construction significantly.',
+                technicalNote: 'Poor column alignment forces expensive transfer structures. Each transfer can add 200% more material locally and complicate construction significantly. Analysis based on 1.5m eccentricity tolerance.',
                 action: 'Maintain vertical continuity',
                 remediation: ['Adjust layouts', 'Accept program constraints', 'Add transfer beams', 'Relocate service cores'],
                 impactScore: { cost: 'High', carbon: 'High', time: 'Medium' },
                 keyImpact: 'Each transfer +200% local structure',
-                inputType: 'number',
+                inputType: 'list',
                 unit: '%',
+                inputLabel: 'Column Details & Alignment',
                 ranges: { optimal: { min: 85, max: 100 }, acceptable: { min: 70, max: 85 }, risk: { min: 0, max: 70 } },
-                defaultValue: 82
+                defaultValue: 82,
+                listConfig: {
+                    type: 'columns',
+                    fields: [
+                        { name: 'column_id', label: 'Column ID', type: 'text' },
+                        { name: 'location', label: 'Grid Location', type: 'text' },
+                        { name: 'size', label: 'Column Size (mm)', type: 'text' },
+                        { name: 'weight', label: 'Weight (kg/m)', type: 'number', step: 0.1 },
+                        { name: 'eccentricity', label: 'Max Eccentricity (mm)', type: 'number', step: 1 },
+                        { name: 'levels', label: 'Levels Spanned', type: 'number', step: 1 },
+                        { name: 'material', label: 'Material', type: 'select', options: ['Concrete', 'Steel', 'Composite', 'Timber'] }
+                    ],
+                    sortBy: 'eccentricity',
+                    sortOrder: 'desc',
+                    analysis: 'columnAnalysis',
+                    secondarySort: {
+                        field: 'weight',
+                        order: 'desc'
+                    }
+                }
             },
             {
                 id: 'service-runs',
@@ -1369,10 +1611,25 @@ def process_ifc_model(ifc_path):
                 remediation: ['Add satellite risers', 'Relocate equipment rooms', 'Use fan-powered boxes', 'Optimize core location'],
                 impactScore: { cost: 'Medium', carbon: 'Medium', time: 'Medium' },
                 keyImpact: '+40% duct size, +30% material',
-                inputType: 'number',
+                inputType: 'list',
                 unit: 'm',
+                inputLabel: 'Service Core Locations & Distances',
                 ranges: { optimal: { min: 0, max: 25 }, acceptable: { min: 25, max: 35 }, risk: { min: 35, max: 100 } },
-                defaultValue: 28
+                defaultValue: 28,
+                listConfig: {
+                    type: 'service_runs',
+                    fields: [
+                        { name: 'core_id', label: 'Core/Riser ID', type: 'text' },
+                        { name: 'core_type', label: 'Service Type', type: 'select', options: ['Main MEP Core', 'Secondary Riser', 'Electrical Riser', 'HVAC Equipment', 'Fire Service', 'Communication/Data'] },
+                        { name: 'location', label: 'Core Location', type: 'text' },
+                        { name: 'max_distance', label: 'Max Distance to Space (m)', type: 'number', step: 0.1 },
+                        { name: 'served_area', label: 'Served Area (m²)', type: 'number', step: 0.1 },
+                        { name: 'efficiency', label: 'Distribution Efficiency', type: 'select', options: ['High (Direct)', 'Medium (1-2 Branches)', 'Low (Multiple Branches)'] }
+                    ],
+                    sortBy: 'max_distance',
+                    sortOrder: 'desc',
+                    analysis: 'serviceRunAnalysis'
+                }
             }
         ];
 
