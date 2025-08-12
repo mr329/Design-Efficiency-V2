@@ -240,7 +240,7 @@
                 <div class="max-w-6xl mx-auto px-4 py-4">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-4">
-                            <div class="w-16 h-16 rounded-lg flex items-center justify-center overflow-hidden">
+                            <div class="w-24 h-24 rounded-lg flex items-center justify-center overflow-hidden">
                                 <img src="https://pfst.cf2.poecdn.net/base/image/cc880aabb5d7d2305b7aa6b910e47992b6e8a43bda688a85f93e31c5c74943f2?w=135&h=135" 
                                      alt="Practical Design Efficiency Tool" 
                                      class="w-full h-full object-contain">
@@ -722,18 +722,6 @@
                                 Tool developed by <a href="https://www.linkedin.com/in/mehdirobati" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 transition-colors">Dr Mehdi Robati</a> with AI assistance.
                             </p>
                         </div>
-
-                        <!-- Navigation Buttons -->
-                        <div class="flex justify-between mt-8">
-                            <button onclick="showPage('summary')" class="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors duration-300">
-                                <i data-lucide="arrow-left" class="h-5 w-5 mr-2 inline"></i>
-                                Back to Summary
-                            </button>
-                            <button onclick="resetTool()" class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-300">
-                                <i data-lucide="refresh-cw" class="h-5 w-5 mr-2 inline"></i>
-                                Start New Analysis
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -804,6 +792,276 @@
                     <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">API Implementation Guide</h3>
                     <p class="text-gray-600 dark:text-gray-400 mb-6">Complete code examples for extracting efficiency parameters from IFC models</p>
                     
+                    <!-- Calculation Visualizations -->
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg p-6 mb-6">
+                        <h4 class="font-semibold text-gray-800 dark:text-gray-100 mb-4">
+                            <i data-lucide="trending-up" class="h-5 w-5 inline mr-2 text-blue-600"></i>
+                            Parameter Calculation Visualizations
+                        </h4>
+                        
+                        <!-- Form Efficiency Diagram -->
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                            <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border">
+                                <h5 class="font-medium text-gray-800 dark:text-gray-100 mb-3">Form Efficiency Calculation</h5>
+                                <div class="relative">
+                                    <svg viewBox="0 0 300 200" class="w-full h-32 border rounded">
+                                        <!-- Building outline -->
+                                        <rect x="50" y="50" width="200" height="100" fill="none" stroke="#3B82F6" stroke-width="2"/>
+                                        <!-- Perimeter arrows -->
+                                        <path d="M50 45 L250 45" stroke="#EF4444" stroke-width="2" marker-end="url(#arrowhead)"/>
+                                        <path d="M250 45 L250 155" stroke="#EF4444" stroke-width="2" marker-end="url(#arrowhead)"/>
+                                        <path d="M250 160 L50 160" stroke="#EF4444" stroke-width="2" marker-end="url(#arrowhead)"/>
+                                        <path d="M45 155 L45 50" stroke="#EF4444" stroke-width="2" marker-end="url(#arrowhead)"/>
+                                        <!-- Area fill -->
+                                        <rect x="55" y="55" width="190" height="90" fill="#10B981" fill-opacity="0.2"/>
+                                        <!-- Labels -->
+                                        <text x="150" y="35" text-anchor="middle" class="fill-red-600 text-xs font-medium">Perimeter (P)</text>
+                                        <text x="150" y="105" text-anchor="middle" class="fill-green-600 text-xs font-medium">Area (A)</text>
+                                        <!-- Arrow marker definition -->
+                                        <defs>
+                                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                                <polygon points="0 0, 10 3.5, 0 7" fill="#EF4444"/>
+                                            </marker>
+                                        </defs>
+                                    </svg>
+                                    <div class="mt-2 text-center">
+                                        <div class="text-sm font-mono bg-gray-100 dark:bg-gray-700 rounded p-2">
+                                            Form Efficiency = P ÷ A
+                                        </div>
+                                        <div class="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                                            Lower values = more efficient form
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Height/Width Ratio Diagram -->
+                            <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border">
+                                <h5 class="font-medium text-gray-800 dark:text-gray-100 mb-3">Height/Width Ratio</h5>
+                                <div class="relative">
+                                    <svg viewBox="0 0 300 200" class="w-full h-32 border rounded">
+                                        <!-- Building outline -->
+                                        <rect x="100" y="30" width="100" height="140" fill="none" stroke="#3B82F6" stroke-width="2"/>
+                                        <!-- Height arrow -->
+                                        <path d="M85 30 L85 170" stroke="#EF4444" stroke-width="2" marker-end="url(#arrowhead2)" marker-start="url(#arrowhead2)"/>
+                                        <!-- Width arrow -->
+                                        <path d="M100 185 L200 185" stroke="#10B981" stroke-width="2" marker-end="url(#arrowhead3)" marker-start="url(#arrowhead3)"/>
+                                        <!-- Labels -->
+                                        <text x="75" y="105" text-anchor="middle" class="fill-red-600 text-xs font-medium" transform="rotate(-90, 75, 105)">Height (H)</text>
+                                        <text x="150" y="195" text-anchor="middle" class="fill-green-600 text-xs font-medium">Width (W)</text>
+                                        <!-- Arrow markers -->
+                                        <defs>
+                                            <marker id="arrowhead2" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto">
+                                                <polygon points="0 0, 8 3, 0 6" fill="#EF4444"/>
+                                            </marker>
+                                            <marker id="arrowhead3" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto">
+                                                <polygon points="0 0, 8 3, 0 6" fill="#10B981"/>
+                                            </marker>
+                                        </defs>
+                                    </svg>
+                                    <div class="mt-2 text-center">
+                                        <div class="text-sm font-mono bg-gray-100 dark:bg-gray-700 rounded p-2">
+                                            H/W Ratio = Height ÷ Width
+                                        </div>
+                                        <div class="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                                            Target: &lt;7:1 for optimal structural efficiency
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Cantilever Analysis Visualization -->
+                        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border mb-6">
+                            <h5 class="font-medium text-gray-800 dark:text-gray-100 mb-3">Cantilever Projection Analysis</h5>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                <div>
+                                    <svg viewBox="0 0 400 150" class="w-full h-24 border rounded">
+                                        <!-- Main structure -->
+                                        <rect x="50" y="60" width="150" height="20" fill="#3B82F6" stroke="#1E40AF" stroke-width="1"/>
+                                        <!-- Support column -->
+                                        <rect x="190" y="60" width="20" height="60" fill="#6B7280" stroke="#374151" stroke-width="1"/>
+                                        <!-- Cantilever -->
+                                        <rect x="200" y="60" width="120" height="20" fill="#EF4444" stroke="#DC2626" stroke-width="1"/>
+                                        <!-- Projection measurement -->
+                                        <path d="M200 45 L320 45" stroke="#F59E0B" stroke-width="2" marker-end="url(#arrowhead4)" marker-start="url(#arrowhead4)"/>
+                                        <text x="260" y="40" text-anchor="middle" class="fill-amber-600 text-xs font-medium">Projection Length</text>
+                                        <!-- Labels -->
+                                        <text x="125" y="75" text-anchor="middle" class="fill-blue-600 text-xs font-medium">Supported</text>
+                                        <text x="260" y="75" text-anchor="middle" class="fill-red-600 text-xs font-medium">Cantilever</text>
+                                        <text x="200" y="95" text-anchor="middle" class="fill-gray-600 text-xs font-medium">Support</text>
+                                        <!-- Arrow marker -->
+                                        <defs>
+                                            <marker id="arrowhead4" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto">
+                                                <polygon points="0 0, 8 3, 0 6" fill="#F59E0B"/>
+                                            </marker>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <div class="text-sm">
+                                    <div class="font-mono bg-gray-100 dark:bg-gray-700 rounded p-2 mb-2">
+                                        Material Impact = Base + (Projection × 40-60%)
+                                    </div>
+                                    <div class="text-xs text-gray-600 dark:text-gray-400">
+                                        <div class="mb-1">🟢 Optimal: &lt;1.5m projection</div>
+                                        <div class="mb-1">🟡 Acceptable: &lt;2.5m projection</div>
+                                        <div>🔴 Risk: &gt;3.5m projection</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Column Alignment Visualization -->
+                        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border mb-6">
+                            <h5 class="font-medium text-gray-800 dark:text-gray-100 mb-3">Column Alignment Analysis (1.5m Eccentricity Tolerance)</h5>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                <div>
+                                    <h6 class="text-sm font-medium text-green-600 mb-2">✓ Aligned Columns</h6>
+                                    <svg viewBox="0 0 200 150" class="w-full h-24 border rounded">
+                                        <!-- Floor levels -->
+                                        <line x1="20" y1="120" x2="180" y2="120" stroke="#E5E7EB" stroke-width="1"/>
+                                        <line x1="20" y1="90" x2="180" y2="90" stroke="#E5E7EB" stroke-width="1"/>
+                                        <line x1="20" y1="60" x2="180" y2="60" stroke="#E5E7EB" stroke-width="1"/>
+                                        <line x1="20" y1="30" x2="180" y2="30" stroke="#E5E7EB" stroke-width="1"/>
+                                        <!-- Aligned columns -->
+                                        <rect x="95" y="30" width="10" height="25" fill="#10B981"/>
+                                        <rect x="95" y="60" width="10" height="25" fill="#10B981"/>
+                                        <rect x="95" y="90" width="10" height="25" fill="#10B981"/>
+                                        <!-- Tolerance zone -->
+                                        <circle cx="100" cy="100" r="15" fill="none" stroke="#10B981" stroke-width="1" stroke-dasharray="2,2"/>
+                                        <text x="100" y="140" text-anchor="middle" class="fill-green-600 text-xs">1.5m tolerance</text>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h6 class="text-sm font-medium text-red-600 mb-2">✗ Misaligned Columns</h6>
+                                    <svg viewBox="0 0 200 150" class="w-full h-24 border rounded">
+                                        <!-- Floor levels -->
+                                        <line x1="20" y1="120" x2="180" y2="120" stroke="#E5E7EB" stroke-width="1"/>
+                                        <line x1="20" y1="90" x2="180" y2="90" stroke="#E5E7EB" stroke-width="1"/>
+                                        <line x1="20" y1="60" x2="180" y2="60" stroke="#E5E7EB" stroke-width="1"/>
+                                        <line x1="20" y1="30" x2="180" y2="30" stroke="#E5E7EB" stroke-width="1"/>
+                                        <!-- Misaligned columns -->
+                                        <rect x="95" y="30" width="10" height="25" fill="#EF4444"/>
+                                        <rect x="110" y="60" width="10" height="25" fill="#EF4444"/>
+                                        <rect x="75" y="90" width="10" height="25" fill="#EF4444"/>
+                                        <!-- Transfer beam -->
+                                        <rect x="70" y="85" width="55" height="5" fill="#F59E0B"/>
+                                        <text x="97" y="140" text-anchor="middle" class="fill-red-600 text-xs">Transfer required</text>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="mt-2 text-center">
+                                <div class="text-sm font-mono bg-gray-100 dark:bg-gray-700 rounded p-2">
+                                    Alignment % = (Aligned Columns ÷ Total Columns) × 100
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Service Runs Visualization -->
+                        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border">
+                            <h5 class="font-medium text-gray-800 dark:text-gray-100 mb-3">Horizontal Service Runs Analysis</h5>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                <div>
+                                    <svg viewBox="0 0 300 200" class="w-full h-32 border rounded">
+                                        <!-- Floor plate -->
+                                        <rect x="20" y="50" width="260" height="100" fill="none" stroke="#E5E7EB" stroke-width="1"/>
+                                        <!-- Service core -->
+                                        <rect x="40" y="70" width="40" height="60" fill="#3B82F6" stroke="#1E40AF" stroke-width="2"/>
+                                        <text x="60" y="105" text-anchor="middle" class="fill-white text-xs font-medium">Core</text>
+                                        <!-- Served spaces -->
+                                        <rect x="120" y="70" width="30" height="25" fill="#10B981" fill-opacity="0.3" stroke="#10B981"/>
+                                        <rect x="170" y="85" width="30" height="25" fill="#F59E0B" fill-opacity="0.3" stroke="#F59E0B"/>
+                                        <rect x="220" y="100" width="30" height="25" fill="#EF4444" fill-opacity="0.3" stroke="#EF4444"/>
+                                        <!-- Service runs -->
+                                        <path d="M80 100 L135 82" stroke="#3B82F6" stroke-width="2"/>
+                                        <path d="M80 100 L185 97" stroke="#3B82F6" stroke-width="2"/>
+                                        <path d="M80 100 L235 112" stroke="#3B82F6" stroke-width="2"/>
+                                        <!-- Distance measurements -->
+                                        <path d="M80 40 L235 40" stroke="#EF4444" stroke-width="2" marker-end="url(#arrowhead5)"/>
+                                        <text x="157" y="35" text-anchor="middle" class="fill-red-600 text-xs font-medium">Max Distance</text>
+                                        <!-- Labels -->
+                                        <text x="135" y="90" text-anchor="middle" class="fill-green-600 text-xs">25m</text>
+                                        <text x="185" y="105" text-anchor="middle" class="fill-amber-600 text-xs">35m</text>
+                                        <text x="235" y="120" text-anchor="middle" class="fill-red-600 text-xs">45m</text>
+                                        <!-- Arrow marker -->
+                                        <defs>
+                                            <marker id="arrowhead5" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto">
+                                                <polygon points="0 0, 8 3, 0 6" fill="#EF4444"/>
+                                            </marker>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <div class="text-sm">
+                                    <div class="font-mono bg-gray-100 dark:bg-gray-700 rounded p-2 mb-2">
+                                        Max Distance = furthest_space_distance
+                                    </div>
+                                    <div class="text-xs text-gray-600 dark:text-gray-400">
+                                        <div class="mb-1">🟢 Optimal: &lt;25m from core</div>
+                                        <div class="mb-1">🟡 Acceptable: 25-35m from core</div>
+                                        <div class="mb-1">🔴 Risk: &gt;35m from core</div>
+                                        <div class="mt-2 font-medium">Material Impact:</div>
+                                        <div>Long runs require 40% larger ducts</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Efficiency Impact Chart -->
+                        <div class="bg-white dark:bg-gray-800 rounded-lg p-4 border">
+                            <h5 class="font-medium text-gray-800 dark:text-gray-100 mb-3">Parameter Impact Comparison</h5>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm text-gray-700 dark:text-gray-300">Cantilevers (per meter)</span>
+                                    <div class="flex items-center">
+                                        <div class="w-32 h-4 bg-gray-200 dark:bg-gray-600 rounded-full mr-2">
+                                            <div class="h-4 bg-red-500 rounded-full" style="width: 90%"></div>
+                                        </div>
+                                        <span class="text-xs text-red-600 font-medium">+40-60%</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm text-gray-700 dark:text-gray-300">Transfer Structures</span>
+                                    <div class="flex items-center">
+                                        <div class="w-32 h-4 bg-gray-200 dark:bg-gray-600 rounded-full mr-2">
+                                            <div class="h-4 bg-red-500 rounded-full" style="width: 100%"></div>
+                                        </div>
+                                        <span class="text-xs text-red-600 font-medium">+200%</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm text-gray-700 dark:text-gray-300">Long Service Runs</span>
+                                    <div class="flex items-center">
+                                        <div class="w-32 h-4 bg-gray-200 dark:bg-gray-600 rounded-full mr-2">
+                                            <div class="h-4 bg-yellow-500 rounded-full" style="width: 60%"></div>
+                                        </div>
+                                        <span class="text-xs text-yellow-600 font-medium">+40%</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm text-gray-700 dark:text-gray-300">Poor Form Efficiency</span>
+                                    <div class="flex items-center">
+                                        <div class="w-32 h-4 bg-gray-200 dark:bg-gray-600 rounded-full mr-2">
+                                            <div class="h-4 bg-orange-500 rounded-full" style="width: 50%"></div>
+                                        </div>
+                                        <span class="text-xs text-orange-600 font-medium">+15-20%</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm text-gray-700 dark:text-gray-300">Tall/Thin Buildings</span>
+                                    <div class="flex items-center">
+                                        <div class="w-32 h-4 bg-gray-200 dark:bg-gray-600 rounded-full mr-2">
+                                            <div class="h-4 bg-orange-500 rounded-full" style="width: 45%"></div>
+                                        </div>
+                                        <span class="text-xs text-orange-600 font-medium">+20-30%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-xs text-gray-500 dark:text-gray-400">
+                                Material cost increases relative to optimized baseline design
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Basic Form Parameters -->
                     <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 mb-6">
                         <h4 class="font-semibold text-gray-800 dark:text-gray-100 mb-3">
